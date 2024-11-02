@@ -10,3 +10,6 @@ Startup line: ?Game=DeadZone.DeadZone_Survival?kf-bioticslab?Mutator=CTI.Mut,YAS
 Src_test new Map Vote.7z - Add xVotingHandler (Map Vote) from ServerExtMut
 ![YSPFpSm0qXw](https://github.com/user-attachments/assets/6ea21914-f907-4626-9115-f88cc1a650ab)
 
+
+Add custom "AA12 DZ" with hacked DLC skin:
+![Eo5c1rIa_Z4](https://github.com/user-attachments/assets/62bc87c0-de34-48f4-9adb-a216b5c4eb2c)
