@@ -56,6 +56,15 @@ simulated function AttachWeaponTo(SkeletalMeshComponent MeshCpnt, optional Name 
     ApplySkin();
 }
 
+// Переопределяем функцию для присоединения третьего лица оружия к персонажу
+simulated function AttachThirdPersonWeapon(KFPawn P)
+{
+    super.AttachThirdPersonWeapon(P);
+
+    // Применяем скин после присоединения третьего лица оружия к персонажу
+    ApplySkin();
+}
+
 
 defaultproperties
 {
