@@ -57,6 +57,24 @@ simulated function AttachWeaponTo(SkeletalMeshComponent MeshCpnt, optional Name 
     ApplySkin();
 }
 
+simulated function AttachTo(KFPawn P)
+{
+    local KFWeaponAttachment AttachmentTemplate;
+
+    // Получаем шаблон оружия
+    AttachmentTemplate = GetWeaponAttachmentTemplate();
+
+    // Проверяем, что шаблон оружия доступен
+    if (AttachmentTemplate != none)
+    {
+        // Вызываем функцию AttachTo из KFWeaponAttachment
+        AttachmentTemplate.AttachTo(P);
+    }
+
+    // Применяем скин
+    ApplySkin();
+}
+
 // Переопределяем функцию для присоединения третьего лица оружия к персонажу
 simulated function AttachThirdPersonWeapon(KFPawn P)
 {
@@ -95,7 +113,7 @@ reliable client function ClientWeaponSet(bool bOptionalSet, optional bool bDoNot
 	if (WeaponContentLoaded)
 	{
 		SetWeapon();
-		 ApplySkin();
+		ApplySkin();
 	}
 	SetOnContentLoad = true;
 
@@ -141,10 +159,8 @@ simulated function Timer_UpdateWeaponSkin()
 // Реплицируем событие при изменении SkinId
 replication
 {
-
     if (bNetDirty && Role == ROLE_Authority)
-        SkinId;
-		    
+        SkinId;		    
 }
 
 // Обрабатываем реплицированное событие
@@ -162,12 +178,10 @@ simulated event ReplicatedEvent(name VarName)
 
 defaultproperties
 {
-//    SkinItemId=3058
 	// Inventory
 	InventorySize=8
 	GroupPriority=100
 	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AA12'
-	//ItemName="AA12 DeadZone"
 	
     NetUpdateFrequency=100.0 /// для SkinID
 	
