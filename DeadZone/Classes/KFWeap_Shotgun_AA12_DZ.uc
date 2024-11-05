@@ -1,4 +1,4 @@
-class KFWeap_Shotgun_AA12_DZ extends KFWeap_Shotgun_AA12;
+class KFWeap_Shotgun_AA12_DZ extends KFWeap_Shotgun_AA12; // config(DeadZone_weapons);
 
 // ID скина, который мы хотим применить
 var int SkinId;
@@ -65,17 +65,96 @@ simulated function AttachThirdPersonWeapon(KFPawn P)
     ApplySkin();
 }
 
+// Переопределяем функцию для получения шаблона оружия
+simulated function KFWeaponAttachment GetWeaponAttachmentTemplate()
+{
+
+    local KFWeaponAttachment AttachmentTemplate;
+
+    AttachmentTemplate = super.GetWeaponAttachmentTemplate();
+
+    // Применяем скин к шаблону оружия
+    if (AttachmentTemplate != none)
+    {
+        AttachmentTemplate.SetWeaponSkin(SkinId);
+    }
+
+    return AttachmentTemplate;
+		super.GetWeaponAttachmentTemplate();
+		ApplySkin();
+}
+
+simulated event SetWeapon()
+{
+	super.SetWeapon();
+	  ApplySkin();
+}
+
+reliable client function ClientWeaponSet(bool bOptionalSet, optional bool bDoNotActivate)
+{
+	if (WeaponContentLoaded)
+	{
+		SetWeapon();
+		 ApplySkin();
+	}
+	SetOnContentLoad = true;
+
+	Super.ClientWeaponSet(bOptionalSet, bDoNotActivate);
+
+	if (MedicComp != none)
+	{
+		MedicComp.OnClientWeaponSet();
+	}
+}
+
+// Переопределяем функцию для изменения видимости оружия
+simulated function ChangeVisibility(bool bIsVisible)
+{
+    super.ChangeVisibility(bIsVisible);
+
+    // Применяем скин после изменения видимости оружия
+    ApplySkin();
+}
+
+simulated function Timer_UpdateWeaponSkin()
+{
+	super.Timer_UpdateWeaponSkin();
+	ApplySkin();
+}
+
+// Реплицируем событие при изменении SkinId
+replication
+{
+
+    if (bNetDirty && Role == ROLE_Authority)
+        SkinId;
+		    
+}
+
+// Обрабатываем реплицированное событие
+simulated event ReplicatedEvent(name VarName)
+{
+    if (VarName == 'SkinId')
+    {
+        ApplySkin();
+    }
+    else
+    {
+        super.ReplicatedEvent(VarName);
+    }
+}
 
 defaultproperties
 {
-  //  ID=3058
+//    SkinItemId=3058
 	// Inventory
 	InventorySize=8
 	GroupPriority=100
 	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AA12'
 	//ItemName="AA12 DeadZone"
 	
-
+    NetUpdateFrequency=100.0 /// для SkinID
+	
 	// Shooting Animations
 	FireSightedAnims[0]=Shoot_Iron
 	FireSightedAnims[1]=Shoot_Iron2
