@@ -68,7 +68,6 @@ simulated function AttachThirdPersonWeapon(KFPawn P)
 // Переопределяем функцию для получения шаблона оружия
 simulated function KFWeaponAttachment GetWeaponAttachmentTemplate()
 {
-
     local KFWeaponAttachment AttachmentTemplate;
 
     AttachmentTemplate = super.GetWeaponAttachmentTemplate();
@@ -79,9 +78,9 @@ simulated function KFWeaponAttachment GetWeaponAttachmentTemplate()
         AttachmentTemplate.SetWeaponSkin(SkinId);
     }
 
+    ApplySkin();
+
     return AttachmentTemplate;
-		super.GetWeaponAttachmentTemplate();
-		ApplySkin();
 }
 
 simulated event SetWeapon()
