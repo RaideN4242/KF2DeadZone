@@ -35,6 +35,7 @@ simulated function ApplySkin()
                 AttachmentArchetype.WeapMesh.SetMaterial(i, SkinMaterials[i]);
             }
         }
+		 SetWeaponSkin(SkinId);
     }
 }
 
@@ -104,6 +105,22 @@ reliable client function ClientWeaponSet(bool bOptionalSet, optional bool bDoNot
 	{
 		MedicComp.OnClientWeaponSet();
 	}
+}
+
+simulated function SetWeaponSkin(int ItemId, optional bool bFinishedLoading = false)
+{
+    local KFWeaponAttachment AttachmentTemplate;
+
+    // Получаем шаблон оружия
+    AttachmentTemplate = GetWeaponAttachmentTemplate();
+
+    // Проверяем, что шаблон оружия доступен
+    if (AttachmentTemplate != none)
+    {
+        // Вызываем функцию SetWeaponSkin из KFWeaponAttachment
+        AttachmentTemplate.SetWeaponSkin(ItemId, bFinishedLoading);
+    }
+	 ApplySkin();
 }
 
 // Переопределяем функцию для изменения видимости оружия
