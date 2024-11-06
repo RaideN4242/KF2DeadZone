@@ -35,7 +35,7 @@ simulated function ApplySkin()
                 AttachmentArchetype.WeapMesh.SetMaterial(i, SkinMaterials[i]);
             }
         }
-		 SetWeaponSkin(SkinId);
+	////	 SetWeaponSkin(SkinId);///// игра крашится, поэтому отключаем параметр здесь.
     }
 }
 
