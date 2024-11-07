@@ -35,7 +35,7 @@ simulated function ApplySkin()
                 AttachmentArchetype.WeapMesh.SetMaterial(i, SkinMaterials[i]);
             }
         }
-	////	 SetWeaponSkin(SkinId);///// игра крашится, поэтому отключаем параметр здесь.
+//		 SetWeaponSkin(SkinId);
     }
 }
 
@@ -129,6 +129,16 @@ simulated function SetWeaponSkin(int ItemId, optional bool bFinishedLoading = fa
 {
     local KFWeaponAttachment AttachmentTemplate;
 
+    // Отладочный вывод
+    `log("Setting weapon skin with ItemId: " $ ItemId);
+
+    // Проверяем, что ItemId равен SkinId
+    if (ItemId != SkinId)
+    {
+        `log("ItemId does not match SkinId. ItemId: " $ ItemId $ ", SkinId: " $ SkinId);
+        return;
+    }
+
     // Получаем шаблон оружия
     AttachmentTemplate = GetWeaponAttachmentTemplate();
 
@@ -138,7 +148,40 @@ simulated function SetWeaponSkin(int ItemId, optional bool bFinishedLoading = fa
         // Вызываем функцию SetWeaponSkin из KFWeaponAttachment
         AttachmentTemplate.SetWeaponSkin(ItemId, bFinishedLoading);
     }
-	 ApplySkin();
+
+    // Вызываем StartLoadWeaponSkin с ItemId
+    StartLoadWeaponSkin(ItemId);
+
+    // Применяем скин
+    ApplySkin();
+}
+
+simulated function StartLoadWeaponSkin(int ItemId)
+{
+    local KFWeaponAttachment AttachmentTemplate;
+
+    // Отладочный вывод
+    `log("Starting to load weapon skin with ItemId: " $ ItemId);
+
+    // Проверяем, что ItemId равен SkinId
+    if (ItemId != SkinId)
+    {
+        `log("ItemId does not match SkinId. ItemId: " $ ItemId $ ", SkinId: " $ SkinId);
+        return;
+    }
+
+    // Получаем шаблон оружия
+    AttachmentTemplate = GetWeaponAttachmentTemplate();
+
+    // Проверяем, что шаблон оружия доступен
+    if (AttachmentTemplate != none)
+    {
+        // Вызываем StartLoadWeaponSkin из KFWeaponAttachment
+        AttachmentTemplate.StartLoadWeaponSkin(ItemId);
+    }
+
+    // Применяем скин после загрузки
+    ApplySkin();
 }
 
 // Переопределяем функцию для изменения видимости оружия
