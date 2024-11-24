@@ -7,6 +7,8 @@ var public  String HexColorInfo;
 var public  String HexColorWarn;
 var public  String HexColorError;
 
+var globalconfig int SelectedEmoteIndex;
+
 var private KFGameReplicationInfo KFGRI;
 
 var private bool StatsInitialized;
