@@ -5,7 +5,7 @@ Server IP: 109.195.103.47:7777
 
 Credits: https://github.com/GenZmeY/KF2-MSK-GS
 
-Startup line: ?Game=DeadZone.DeadZone_Survival?Mutator=CTI.Mut,YAS.YASMut,DeadZone-SRV.DeadZone_Mut,TRB.Mut,CVC.Mut,StartWave.Mut,UnofficialKFPatch_Lite.UKFPMutator?adminpassword=KF2adminDZ?AdminName=raiden?MaxPlayers=16?Difficulty=2?
+Startup line: ?Game=DeadZone.DeadZone_Survival?Mutator=CTI.Mut,YAS.YASMut,DeadZone-SRV.DeadZone_Mut,TRB.Mut,CVC.Mut,StartWave.Mut,UnofficialKFPatch_Lite.UKFPMutator?adminpassword=XXX?AdminName=raiden4242?MaxPlayers=16?Difficulty=2?
 
 Force Boot Winter Event!
 
