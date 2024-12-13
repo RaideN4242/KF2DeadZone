@@ -1,13 +1,9 @@
-class DeadZone_PlayerReplicationInfo extends KFPlayerReplicationInfo;
+class DeadZone_PlayerReplicationInfo_new extends KFPlayerReplicationInfo;
 
 
 defaultproperties
 {
-////	TaggedPlayerName="Player"
-
-	// Playable characters from archetypes
-
-	// Mr. Foster is first because he is the only playable character during console installation
+/*
 	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_MrFoster_archetype')
 
 	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Alberts_archetype')
@@ -26,4 +22,5 @@ defaultproperties
 	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_DAR_archetype')
 	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_MrsFoster_archetype')
 	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_BadSanta_Archetype')
+	*/
 }

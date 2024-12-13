@@ -8,18 +8,29 @@ var public  String HexColorWarn;
 var public  String HexColorError;
 
 var globalconfig int SelectedEmoteIndex;
-
+var globalconfig bool bShowFPLegs;
 var private KFGameReplicationInfo KFGRI;
 
 var private bool StatsInitialized;
 var private KFGFxWidget_PartyInGame PartyInGameWidget;
 var private bool bChatMessageRecieved;
 
+//var private KFOnlineStatsWrite StatsWrite;
+
 replication
 {
 	if (bNetInitial && Role == ROLE_Authority)
 		RepInfo, MinLevel, MaxLevel, DisconnectTimer,
 		HexColorInfo, HexColorWarn, HexColorError;
+}
+
+simulated final function ToggleFPBody(bool bEnable)
+{
+	bShowFPLegs = bEnable;
+	Class'DeadZone_PlayerController'.Default.bShowFPLegs = bEnable;
+
+	if (DeadZone_KFPawn_Human(Pawn)!=None)
+		DeadZone_KFPawn_Human(Pawn).UpdateFPLegs();
 }
 
 public simulated event PreBeginPlay()
@@ -217,11 +228,68 @@ public simulated function InitPerkLoadout()
 	Super.InitPerkLoadout();
 }
 
+simulated event name GetSeasonalStateName()
+{
+    local int EventId, MapModifiedEventId;
+	local KFMapInfo KFMI;
+
+	MapModifiedEventId = SEI_Winter; 
+	
+	KFMI = KFMapInfo(WorldInfo.GetMapInfo());
+	if (KFMI != none)
+	{
+		KFMI.ModifySeasonalEventId(MapModifiedEventId);
+	}
+	
+    // Принудительно устанавливаем режим ивента "Зима"
+    EventId = SEI_Winter;
+
+    switch (EventId % 10)
+    {
+        case SEI_Summer:
+            `Log("GetSeasonalStateName: Summer");
+            return 'Summer_Sideshow';
+        case SEI_Fall:
+            `Log("GetSeasonalStateName: Fall");
+            return 'Fall';
+        case SEI_Winter:
+            `Log("GetSeasonalStateName: Winter");
+            return 'Winter';
+        case SEI_Spring:
+            `Log("GetSeasonalStateName: Spring");
+            return 'Spring';
+        default:
+            `Log("GetSeasonalStateName: No Event");
+            return 'No_Event';
+    }
+
+    return 'No_Event';
+}
+
+static function int GetSeasonalEventIDForZedSkins()
+{
+    // Принудительно возвращаем зимний ивент
+    return SEI_Winter;
+}
+/*
+simulated function CheckSpecialEventID()
+{
+    //Don't cache the actual value until we have all the right set of valid data
+    if( class'KFGameEngine'.static.GetSeasonalEventID() >= 1 )
+    {
+        StatsWrite.UpdateSpecialEventState();
+    }
+	else
+	{
+		SetTimer(RefreshObjectiveUITime, false, 'CheckSpecialEventID');
+	}
+}
+*/
 defaultproperties
 {
 	StatsInitialized     = false
 	bChatMessageRecieved = false
-	
+	bAllowSeasonalSkins = true
 	DisconnectTimer      = 15
 	MinLevel             = 0
 	MaxLevel             = 25
