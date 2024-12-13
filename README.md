@@ -10,7 +10,7 @@ Startup line: ?Game=DeadZone.DeadZone_Survival?Mutator=CTI.Mut,YAS.YASMut,DeadZo
 Add First Person Legs:
 ![NsxyCtxqwPk](https://github.com/user-attachments/assets/ea18ffd5-d7f0-4b5c-a9e9-16c230739ce1)
 
-AllTrader Doors are enabled:
+All Trader Doors are opened:
 ![kVywrb36p04](https://github.com/user-attachments/assets/f0b1d8d6-5ce0-4bda-89bf-8d299b6f8ee6)
 
 Drop all weapons after death:
