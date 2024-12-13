@@ -8,7 +8,8 @@ Credits: https://github.com/GenZmeY/KF2-MSK-GS
 Startup line: ?Game=DeadZone.DeadZone_Survival?Mutator=CTI.Mut,YAS.YASMut,DeadZone-SRV.DeadZone_Mut,TRB.Mut,CVC.Mut,StartWave.Mut,UnofficialKFPatch_Lite.UKFPMutator?adminpassword=XXX?AdminName=raiden?MaxPlayers=16?Difficulty=2?dosh=2500?StartingCash=2000?StartingDosh=2000?
 
 Add First Person Legs
-![изображение](https://github.com/user-attachments/assets/9be10f20-203f-4c7a-9c49-ec855445590e)
+![NsxyCtxqwPk](https://github.com/user-attachments/assets/ea18ffd5-d7f0-4b5c-a9e9-16c230739ce1)
+
 
 
 Add custom "AA12 DZ" (DeadZone.KFWeap_Shotgun_AA12_DZ) with hacked DLC skin:
