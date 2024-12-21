@@ -9,6 +9,10 @@ Startup line: ?Game=DeadZone.DeadZone_Survival?Mutator=CTI.Mut,YAS.YASMut,DeadZo
 
 Force Boot Winter Event!
 
+Upraded Endless Mode: enable HoE+ diff, force boot OutBreak Event:
+![SL0R0C9pvSk](https://github.com/user-attachments/assets/27c8ed72-8cbd-45f2-8749-fccefb1f427a)
+
+
 Add First Person Legs:
 ![NsxyCtxqwPk](https://github.com/user-attachments/assets/ea18ffd5-d7f0-4b5c-a9e9-16c230739ce1)
 
