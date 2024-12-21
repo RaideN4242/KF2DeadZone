@@ -1,5 +1,6 @@
 class DeadZone_PlayerReplicationInfo extends KFPlayerReplicationInfo;
 
+var Controller OwnerController;
 
 defaultproperties
 {

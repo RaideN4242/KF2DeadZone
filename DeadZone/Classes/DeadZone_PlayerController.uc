@@ -23,6 +23,116 @@ replication
 		RepInfo, MinLevel, MaxLevel, DisconnectTimer,
 		HexColorInfo, HexColorWarn, HexColorError;
 }
+/*
+state PlayerWalking
+{
+ignores SeePlayer, HearNoise, Bump;
+
+	function PlayerMove(float DeltaTime)
+	{
+		local vector			X,Y,Z, NewAccel;
+		local eDoubleClickDir	DoubleClickMove;
+		local rotator			OldRotation;
+		local bool				bSaveJump;
+
+		if (Pawn == None)
+		{
+			GotoState('Dead');
+		}
+		else
+		{
+			GetAxes(Pawn.Rotation,X,Y,Z);
+			if (VSZombie(Pawn)!=None)
+				VSZombie(Pawn).ModifyPlayerInput(Self,DeltaTime);
+
+			// Update acceleration.
+			NewAccel = PlayerInput.aForward*X + PlayerInput.aStrafe*Y;
+			NewAccel.Z	= 0;
+			NewAccel = Pawn.AccelRate * Normal(NewAccel);
+
+			if (IsLocalPlayerController())
+			{
+				AdjustPlayerWalkingMoveAccel(NewAccel);
+			}
+
+			DoubleClickMove = PlayerInput.CheckForDoubleClickMove(DeltaTime/WorldInfo.TimeDilation);
+
+			// Update rotation.
+			OldRotation = Rotation;
+			UpdateRotation(DeltaTime);
+			bDoubleJump = false;
+
+			if (bPressedJump && Pawn.CannotJumpNow())
+			{
+				bSaveJump = true;
+				bPressedJump = false;
+			}
+			else
+			{
+				bSaveJump = false;
+			}
+
+			if (Role < ROLE_Authority) // then save this move and replicate it
+			{
+				ReplicateMove(DeltaTime, NewAccel, DoubleClickMove, OldRotation - Rotation);
+			}
+			else
+			{
+				ProcessMove(DeltaTime, NewAccel, DoubleClickMove, OldRotation - Rotation);
+			}
+			bPressedJump = bSaveJump;
+		}
+	}
+}
+*/
+simulated function PostBeginPlay()
+{
+    Super.PostBeginPlay();
+    // Добавляем бинд клавиши "O" на команду Camera
+    ConsoleCommand("setbind O Camera NewMode");
+}
+
+exec function ToggleBehindview()
+{
+    Camera(PlayerCamera.CameraStyle == 'FirstPerson' ? 'ThirdPerson' : 'FirstPerson');
+}
+
+reliable server function ServerCamera(name NewMode)
+{
+    if (NewMode == '1st')
+        NewMode = 'FirstPerson';
+    else if (NewMode == '3rd')
+        NewMode = 'ThirdPerson';
+    SetCameraMode(NewMode);
+}
+
+exec function Camera(name NewMode)
+{
+    ServerCamera(PlayerCamera.CameraStyle == 'FirstPerson' ? 'ThirdPerson' : 'FirstPerson');
+}
+
+function AddDefaultCommand(name Key, string Command)
+{
+    local int i;
+    local PlayerInput IN;
+
+    IN = PlayerInput;
+
+    // Проверяем, есть ли уже бинд для этой клавиши
+    for (i = 0; i < IN.Bindings.Length; ++i)
+    {
+        if (IN.Bindings[i].Name == Key)
+        {
+            IN.Bindings[i].Command = Command;
+            return;
+        }
+    }
+
+    // Если бинда нет, добавляем новый
+    IN.Bindings.Add(1);
+    IN.Bindings[IN.Bindings.Length - 1].Name = Key;
+    IN.Bindings[IN.Bindings.Length - 1].Command = Command;
+}
 
 simulated final function ToggleFPBody(bool bEnable)
 {
@@ -36,11 +146,6 @@ simulated final function ToggleFPBody(bool bEnable)
 public simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-}
-
-public simulated event PostBeginPlay()
-{
-	super.PostBeginPlay();
 }
 
 private simulated function KFGameReplicationInfo GetKFGRI()
