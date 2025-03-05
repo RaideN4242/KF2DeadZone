@@ -7,7 +7,8 @@ Credits: https://github.com/GenZmeY/KF2-MSK-GS
 
 Startup line: ?Game=DeadZone.DeadZone_Survival?Mutator=CTI.Mut,YAS.YASMut,DeadZone-SRV.DeadZone_Mut,TRB.Mut,CVC.Mut,StartWave.Mut,UnofficialKFPatch_Lite.UKFPMutator?adminpassword=XXX?AdminName=raiden4242?MaxPlayers=16?Difficulty=2?
 
-Force Boot Winter Event!
+You can choose Event in DeadZone_Endless.uc. Line =	SeasonalSkinsIndex=3
+	// 1 - classic. 2 - summer. 3 - halloween. 4 - xmas
 
 Upraded Endless Mode: enable HoE+ diff, force boot OutBreak Event:
 ![SL0R0C9pvSk](https://github.com/user-attachments/assets/27c8ed72-8cbd-45f2-8749-fccefb1f427a)
