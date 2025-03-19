@@ -9,6 +9,10 @@ Startup line: ?Game=DeadZone.DeadZone_Survival?Mutator=CTI.Mut,YAS.YASMut,DeadZo
 
 Add Full ammo on start game and random zeds event for class DeadZone_Endless.uc. 
 
+Add backpack weapon:
+![3uZXDzKuMpo](https://github.com/user-attachments/assets/5c58ff0a-5c54-49e4-914b-190c7b77b3f6)
+
+
 Upraded Endless Mode: enable HoE+ diff, force boot OutBreak Event:
 ![SL0R0C9pvSk](https://github.com/user-attachments/assets/27c8ed72-8cbd-45f2-8749-fccefb1f427a)
 
