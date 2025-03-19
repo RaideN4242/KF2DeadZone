@@ -7,7 +7,7 @@ Credits: https://github.com/GenZmeY/KF2-MSK-GS
 
 Startup line: ?Game=DeadZone.DeadZone_Survival?Mutator=CTI.Mut,YAS.YASMut,DeadZone-SRV.DeadZone_Mut,TRB.Mut,CVC.Mut,StartWave.Mut,UnofficialKFPatch_Lite.UKFPMutator?adminpassword=XXX?AdminName=raiden4242?MaxPlayers=16?Difficulty=2?
 
-Add Full ammo on start game and random zeds event for class DeadZone_Endless.uc. 
+Add Full ammo and grenades on start game and random zeds event for class DeadZone_Endless.uc. 
 
 Add backpack weapon:
 ![3uZXDzKuMpo](https://github.com/user-attachments/assets/5c58ff0a-5c54-49e4-914b-190c7b77b3f6)
