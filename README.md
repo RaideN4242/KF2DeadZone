@@ -27,8 +27,6 @@
 - Включена сложность **HoE+** (Hell on Earth+)
 - Принудительный запуск события **OutBreak**
 
-![Улучшенный Endless Mode](https://github.com/user-attachments/assets/27c8ed72-8cbc-45f2-8749-fccefb1f427a)
-
 ### 2. Добавлено отображение оружия на спине персонажа.
 
 ![Система рюкзака](https://github.com/user-attachments/assets/5c58ff0a-5c54-49e4-914b-190c7b77b3f6)
